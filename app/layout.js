@@ -1,6 +1,7 @@
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
 
 export const metadata = {
   title: "Create Next App",
@@ -13,7 +14,10 @@ export default function RootLayout({ children }) {
       <body className="bg-gray-100 dark:bg-gray-900">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Sidebar />
-          <main className="ml-64 transition-all duration-200">{children}</main>
+          <main className="ml-64 transition-all duration-200">
+            <Header />
+            <div className="pt-4">{children}</div>
+          </main>
         </ThemeProvider>
       </body>
     </html>
