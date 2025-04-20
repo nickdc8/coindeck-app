@@ -1,19 +1,71 @@
-import React from "react";
+'use client'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
+import { LogOut, Sun, Moon } from 'lucide-react'
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
+
+function ThemeDropdownItem() {
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => setMounted(true), [])
+
+  if (!mounted) return null
+
+  const isDark = theme === 'dark'
+  return (
+    <DropdownMenu.Item
+      className="flex cursor-pointer items-center gap-2 rounded px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:outline-none dark:text-gray-100 dark:hover:bg-gray-700"
+      onSelect={() => setTheme(isDark ? 'light' : 'dark')}
+    >
+      {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+      <span>{isDark ? 'Light mode' : 'Dark mode'}</span>
+    </DropdownMenu.Item>
+  )
+}
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between h-16 px-6 bg-gray-00 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
-      <div className="flex items-center justify-end flex-1 space-x-4">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="max-w-xs px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <div className="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center overflow-hidden">
-          {/* Placeholder avatar, replace with user image if available */}
-          <span className="text-gray-600 dark:text-gray-200 font-bold">NC</span>
+    <header className="flex h-16 items-center justify-between border-b border-gray-200 px-6 dark:border-gray-700 dark:bg-gray-900">
+      <div className="flex flex-1 items-center justify-end space-x-4">
+        {/* Wrap the input in its own container */}
+        <div>
+          <input
+            type="text"
+            placeholder="Search..."
+            className="max-w-xs rounded-md border border-gray-300 bg-gray-100 px-4 py-2 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100"
+          />
+        </div>
+
+        {/* Wrap the dropdown in its own container */}
+        <div>
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger asChild>
+              <div className="relative flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-gray-300 outline-none focus:ring-0 dark:bg-gray-600">
+                <span className="font-bold text-gray-600 dark:text-gray-200">
+                  NC
+                </span>
+              </div>
+            </DropdownMenu.Trigger>
+
+            <DropdownMenu.Content
+              sideOffset={8}
+              className="absolute -right-5 z-50 min-w-[140px] rounded-md border border-gray-200 bg-white p-1 shadow-lg dark:border-gray-700 dark:bg-gray-800"
+            >
+              <ThemeDropdownItem />
+              <DropdownMenu.Item
+                className="flex cursor-pointer items-center gap-2 rounded px-4 py-2 text-sm text-red-600 hover:bg-red-50 focus:outline-none dark:hover:bg-red-900"
+                onSelect={() => {
+                  alert('Log out clicked')
+                }}
+              >
+                <LogOut className="h-4 w-4 text-red-600" />
+                <span>Log out</span>
+              </DropdownMenu.Item>
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
         </div>
       </div>
     </header>
-  );
+  )
 }
