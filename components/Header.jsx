@@ -30,7 +30,7 @@ export default function Header() {
   const { title } = usePageTitle()
 
   return (
-    <header className="flex h-16 items-center justify-between border-b border-gray-200 px-6 dark:border-gray-700 dark:bg-gray-900">
+    <header className="sticky top-0 z-50 flex h-16 items-center justify-between border-b border-gray-200 bg-white px-6 backdrop-blur dark:border-gray-700 dark:bg-gray-900 dark:backdrop-blur">
       <div className="text-xl font-semibold text-gray-900 dark:text-gray-100">
         {title}
       </div>

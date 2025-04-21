@@ -11,7 +11,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="min-h-screen space-y-6 p-6">
+    <div className="p- min-h-screen space-y-6">
       <PriceChart />
       <div className="mt-6 space-y-4">
         <div className="flex items-center justify-between">

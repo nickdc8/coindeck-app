@@ -84,7 +84,7 @@ export default function PriceChart() {
   const data = dummyData[range] || dummyData['ALL']
 
   return (
-    <div className="rounded-lg bg-white p-6 shadow dark:bg-gray-900">
+    <div className="mt-10 rounded-lg dark:border-gray-700 dark:bg-gray-900">
       <div className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
         £10,686.48
       </div>
