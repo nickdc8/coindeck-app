@@ -1,8 +1,10 @@
 'use client'
+
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { LogOut, Sun, Moon } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
+import { usePageTitle } from './PageTitleContext'
 
 function ThemeDropdownItem() {
   const { theme, setTheme } = useTheme()
@@ -25,10 +27,15 @@ function ThemeDropdownItem() {
 }
 
 export default function Header() {
+  const { title } = usePageTitle()
+
   return (
     <header className="flex h-16 items-center justify-between border-b border-gray-200 px-6 dark:border-gray-700 dark:bg-gray-900">
+      <div className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+        {title}
+      </div>
+
       <div className="flex flex-1 items-center justify-end space-x-4">
-        {/* Wrap the input in its own container */}
         <div>
           <input
             type="text"
@@ -37,7 +44,6 @@ export default function Header() {
           />
         </div>
 
-        {/* Wrap the dropdown in its own container */}
         <div>
           <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>

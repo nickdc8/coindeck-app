@@ -1,5 +1,4 @@
 import './globals.css'
-import Sidebar from '../components/Sidebar'
 import { SidebarProvider } from '../components/SidebarContext'
 import ClientLayout from '../components/ClientLayout'
 

@@ -1,12 +1,18 @@
-const page = () => {
+'use client'
+
+import { useEffect } from 'react'
+import { usePageTitle } from '@components/PageTitleContext'
+
+export default function Page() {
+  const { setTitle } = usePageTitle()
+
+  useEffect(() => {
+    setTitle('Assets')
+  }, [])
+
   return (
     <div className="min-h-screen space-y-6 p-6">
-      {/* Page Title */}
-      <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-        Assets
-      </h1>
+      {/* Page-specific content */}
     </div>
   )
 }
-
-export default page
